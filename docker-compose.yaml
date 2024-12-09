@@ -2,8 +2,14 @@ version: '3.9'
 networks:
   expense:
 volumes:
-  db_data:
+  expense:
 services:
+ # MySQL Database
+  mysql:
+    image: sunil0428/my_mysql:v1
+    container_name: mysql
+    volumes:
+    - expense:/var/lib/mysql
   # Backend Service
   backend:
     image: sunil0428/my_backend:v1
@@ -11,13 +17,6 @@ services:
     command: sh -c "sleep 5 && node /opt/server/index.js"
     depends_on:
       - mysql
-
-  # MySQL Database
-  mysql:
-    image: sunil0428/my_mysql:v1
-    container_name: mysql
-    volumes:
-      - db_data:/var/lib/mysql
 
   # Nginx Frontend
   frontend:
