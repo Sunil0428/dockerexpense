@@ -1,9 +1,9 @@
-FROM node:20-alpine
+FROM node:20.18.0-alpine3.20
 EXPOSE 8080
 ENV DB_HOST="mysql"
-RUN mkdir /app 
-WORKDIR /app 
+RUN mkdir /opt/server
+WORKDIR /opt/server
+COPY package.json .
 COPY *.js .
-COPY *.json .
-RUN  npm install
-CMD [node","index.js"]
+RUN npm install
+CMD ["node","index.js"]
