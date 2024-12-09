@@ -1,4 +1,4 @@
-FROM nginx:stable-alpine3.20-perl
+FROM nginx:mainline-alpine3.20-slim
 RUN rm -rf /usr/share/nginx/html/*
 COPY code /usr/share/nginx/html
 COPY expense.conf /etc/nginx/conf.d/expense.conf
